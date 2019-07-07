@@ -6,7 +6,6 @@
         <div class="card-divider">{{ result.title }}</div>
         <div class="card-section">
           <p>{{ result.url }}.</p>
-          {{ results }}
         </div>
       </div>
     </div>
@@ -25,8 +24,7 @@ export default {
   name: "News",
   data() {
     return {
-      results: [],
-      ids: []
+      results: []
     };
   },
   mounted() {
@@ -36,7 +34,17 @@ export default {
     getPosts() {
       let topstories = buildUrl("topstories");
       axios.get(topstories).then(response => {
-        this.ids = response.data;
+        let ids = response.data;
+        ids.slice(0, 10).filter(id => {
+          let item = buildUrl("item/" + id);
+          axios.get(item).then(response => {
+            let post = response.data;
+            this.results.push({
+              title: post.title,
+              url: post.url
+            });
+          });
+        });
       });
     }
   }
