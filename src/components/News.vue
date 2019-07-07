@@ -4,7 +4,7 @@
     <div class="columns" v-for="(result, index) in results" :key="index">
       <div class="card">
         <div class="card-divider">
-          <a :href="results.url">{{ result.title }}</a>
+          <a :href="result.url">{{ result.title }}</a>
         </div>
       </div>
     </div>
