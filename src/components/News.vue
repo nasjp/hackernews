@@ -1,11 +1,10 @@
 <template>
   <div class="news">
     <h1>Hacker News</h1>
-    <div class="columns medium-3" v-for="(result, index) in results" :key="index">
+    <div class="columns" v-for="(result, index) in results" :key="index">
       <div class="card">
-        <div class="card-divider">{{ result.title }}</div>
-        <div class="card-section">
-          <p>{{ result.url }}.</p>
+        <div class="card-divider">
+          <a :href="results.url">{{ result.title }}</a>
         </div>
       </div>
     </div>
